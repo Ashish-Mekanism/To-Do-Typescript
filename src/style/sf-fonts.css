@@ -1,20 +1,13 @@
 @font-face {
   font-family: "SF Pro Display";
-  src: url("../assets/fonts/ProductSans-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/SF-Pro-Text-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "SF Pro Display";
-  src: url("../assets/fonts/ProductSans-Regular.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "SF Pro Display";
-  src: url("../assets/fonts/SFPRODISPLAYBOLD.OTF") format("truetype");
+  src: url("../assets/fonts/SF-Pro-Display-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }

@@ -1,5 +1,7 @@
 import React from "react";
 import { InputBox } from "./InputbarStyle";
+import { categoryAtom, newTaskAtom, taskAtom } from "../Atom/TodoAtom";
+import { useAtom, useAtomValue } from "jotai";
 
 interface Task {
   text: string;
@@ -8,21 +10,11 @@ interface Task {
   id: number;
 }
 
-interface InputbarProps {
-  setNewTask: (value: string) => void;
-  newTask: string;
-  selectedCategory: string;
-  tasks: Task[];
-  setTasks: (tasks: Task[]) => void;
-}
+const Inputbar = () => {
+  const selectedCategory = useAtomValue(categoryAtom);
+  const [tasks, setTasks] = useAtom<Task[]>(taskAtom);
+  const [newTask, setNewTask] = useAtom(newTaskAtom);
 
-const Inputbar: React.FC<InputbarProps> = ({
-  setNewTask,
-  newTask,
-  selectedCategory,
-  tasks,
-  setTasks
-}) => {
   const handleAddTask = () => {
     if (!newTask.trim()) return;
 
