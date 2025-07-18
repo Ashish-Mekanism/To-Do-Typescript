@@ -1,7 +1,7 @@
 // TaskCheckbox.tsx
 import React from "react";
 import { useAtom } from "jotai";
-import { taskAtom, type Task } from "../Atom/TodoAtom";
+import { tasksAtom, type Task } from "../Atom/TodoAtom";
 import { Checkbox } from "./ButtonStyle";
 
 interface TaskProps {
@@ -9,7 +9,7 @@ interface TaskProps {
 }
 
 const TaskCheckbox: React.FC<TaskProps> = ({ task }) => {
-  const [tasks, setTasks] = useAtom<Task[]>(taskAtom);
+  const [tasks, setTasks] = useAtom<Task[]>(tasksAtom);
 
   const toggleTaskDone = (taskId: number) => {
     const updated = tasks.map((t) =>

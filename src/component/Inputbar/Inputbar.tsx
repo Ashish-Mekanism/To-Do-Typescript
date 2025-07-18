@@ -1,6 +1,6 @@
 import React from "react";
 import { InputBox } from "./InputbarStyle";
-import { categoryAtom, newTaskAtom, taskAtom } from "../Atom/TodoAtom";
+import { categoryAtom, newtasksAtom, tasksAtom } from "../Atom/TodoAtom";
 import { useAtom, useAtomValue } from "jotai";
 
 interface Task {
@@ -12,8 +12,8 @@ interface Task {
 
 const Inputbar = () => {
   const selectedCategory = useAtomValue(categoryAtom);
-  const [tasks, setTasks] = useAtom<Task[]>(taskAtom);
-  const [newTask, setNewTask] = useAtom(newTaskAtom);
+  const [tasks, setTasks] = useAtom<Task[]>(tasksAtom);
+  const [newTask, setNewTask] = useAtom(newtasksAtom);
 
   const handleAddTask = () => {
     if (!newTask.trim()) return;

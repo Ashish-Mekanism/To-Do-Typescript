@@ -9,6 +9,6 @@ export interface Task {
 
 export const categoryAtom = atom("All Tasks");
 
-export const taskAtom = atom<Task[]>([]);
+export const tasksAtom = atom<Task[]>([]);
 
-export const newTaskAtom = atom<string>();
+export const newtasksAtom = atom<string>("");

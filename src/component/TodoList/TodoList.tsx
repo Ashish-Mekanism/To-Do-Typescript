@@ -9,7 +9,7 @@ import {
 import Inputbar from "../Inputbar/Inputbar";
 import TaskCheckbox from "../Button/Button";
 import { useAtomValue } from "jotai";
-import { categoryAtom, taskAtom } from "../Atom/TodoAtom";
+import { categoryAtom, tasksAtom } from "../Atom/TodoAtom";
 
 interface Task {
   text: string;
@@ -20,7 +20,7 @@ interface Task {
 
 const TodoSideBar = () => {
   const selectedCategory = useAtomValue(categoryAtom);
-  const tasks = useAtomValue<Task[]>(taskAtom);
+  const tasks = useAtomValue<Task[]>(tasksAtom);
 
   let filteredTasks;
   if (selectedCategory === "All Tasks") {

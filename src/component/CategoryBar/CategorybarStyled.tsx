@@ -26,7 +26,7 @@ interface CategoryProps {
 
 export const CategoryItem = styled(text)<CategoryProps>`
   cursor: pointer;
-  font-weight: ${({ category }) => (category === "All Tasks" ? "700" : "400")};
+  font-weight: ${({ category }) => category === "All Tasks" && "700"};
   color: ${({ color }) => (color === "gray" ? "#ABABAB" : "black")};
   padding: 12px 16px;
 
