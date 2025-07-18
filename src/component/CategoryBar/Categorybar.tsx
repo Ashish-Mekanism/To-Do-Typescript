@@ -1,9 +1,10 @@
-import React from "react";
 import {
   CategoryItem,
   CategoryList,
   SidebarContainer
 } from "./CategorybarStyled";
+import { useSetAtom } from "jotai";
+import { categoryAtom } from "../Atom/TodoAtom";
 
 const categories = [
   "All Tasks",
@@ -14,12 +15,8 @@ const categories = [
   "Sports"
 ];
 
-interface CategorybarProps {
-  selectedCategory: string;
-  setSelectedCategory: (category: string) => void;
-}
-
-const Categorybar = ({ setSelectedCategory }: CategorybarProps) => {
+const Categorybar = () => {
+  const setSelectedCategory = useSetAtom(categoryAtom);
   return (
     <SidebarContainer>
       <CategoryList>

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   AllTodoList,
   CategoryTitle,
@@ -9,6 +8,8 @@ import {
 } from "./TodoListStyle";
 import Inputbar from "../Inputbar/Inputbar";
 import TaskCheckbox from "../Button/Button";
+import { useAtomValue } from "jotai";
+import { categoryAtom, tasksAtom } from "../Atom/TodoAtom";
 
 interface Task {
   text: string;
@@ -17,20 +18,9 @@ interface Task {
   id: number;
 }
 
-interface TodoSideBarProps {
-  selectedCategory: string;
-}
-
-const TodoSideBar = ({ selectedCategory }: TodoSideBarProps) => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [newTask, setNewTask] = useState("");
-
-  const toggleTaskDone = (taskId: number) => {
-    const updated = tasks.map((task) =>
-      task.id === taskId ? { ...task, done: !task.done } : task
-    );
-    setTasks(updated);
-  };
+const TodoSideBar = () => {
+  const selectedCategory = useAtomValue(categoryAtom);
+  const tasks = useAtomValue<Task[]>(tasksAtom);
 
   let filteredTasks;
   if (selectedCategory === "All Tasks") {
@@ -41,24 +31,15 @@ const TodoSideBar = ({ selectedCategory }: TodoSideBarProps) => {
 
   return (
     <TodoList>
-      <CategoryTitle>{selectedCategory}</CategoryTitle>
-      <Inputbar
-        setNewTask={setNewTask}
-        newTask={newTask}
-        selectedCategory={selectedCategory}
-        tasks={tasks}
-        setTasks={setTasks}
-      />
+      <CategoryTitle size="50px" weight="700">
+        {selectedCategory}
+      </CategoryTitle>
+      <Inputbar />
       <AllTodoList>
         {filteredTasks.map((task, id) => (
           <TodolistItem key={id}>
-            <TaskCheckbox
-              taskId={task.id}
-              taskDone={task.done}
-              onToggle={toggleTaskDone}
-            />
+            <TaskCheckbox task={task} />
             <TodoName done={task.done}>{task.text}</TodoName>
-
             <TodoCategorylable category={task.category}>
               {task.category}
             </TodoCategorylable>

@@ -1,15 +1,27 @@
+// TaskCheckbox.tsx
 import React from "react";
+import { useAtom } from "jotai";
+import { tasksAtom, type Task } from "../Atom/TodoAtom";
 import { Checkbox } from "./ButtonStyle";
 
-interface TaskCheckboxProps {
-  taskId: number;
-  taskDone: boolean;
-  onToggle: (taskId: number) => void;
+interface TaskProps {
+  task: Task;
 }
 
-const TaskCheckbox = ({ taskId, taskDone, onToggle }: TaskCheckboxProps) => {
+const TaskCheckbox: React.FC<TaskProps> = ({ task }) => {
+  const [tasks, setTasks] = useAtom<Task[]>(tasksAtom);
+
+  const toggleTaskDone = (taskId: number) => {
+    const updated = tasks.map((t) =>
+      t.id === taskId ? { ...t, done: !t.done } : t
+    );
+    setTasks(updated);
+  };
+
   return (
-    <Checkbox onClick={() => onToggle(taskId)}>{taskDone ? "✅" : ""}</Checkbox>
+    <Checkbox onClick={() => toggleTaskDone(task.id)}>
+      {task.done ? "✅" : ""}
+    </Checkbox>
   );
 };
 

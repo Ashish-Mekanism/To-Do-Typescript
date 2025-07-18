@@ -1,40 +1,34 @@
 import styled from "styled-components";
 import "../../style/sf-fonts.css";
+import { text } from "../Typography/Text";
 
 export const SidebarContainer = styled.div`
   width: 22%;
-  color: black;
   border-right: 1px solid #d1d5db;
-  padding-top: 126px;
-  padding-left: 100px;
-  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 310px;
 `;
 
 export const CategoryWrapper = styled.div`
-  padding-top: 70px;
-  padding-left: 62px;
   display: flex;
   flex-direction: column;
   gap: 18px;
 `;
 
 export const CategoryList = styled.ul`
-  list-style: none;
-  padding: 0;
+  height: 70vh;
 `;
-
-interface CategoryItemProps {
+interface CategoryProps {
   category?: string;
 }
 
-export const CategoryItem = styled.li<CategoryItemProps>`
-  font-size: 30px;
-  font-weight: ${({ category }) => (category === "All Tasks" ? 700 : 400)};
-  padding: 12px 16px;
+export const CategoryItem = styled(text)<CategoryProps>`
   cursor: pointer;
-  font-family: "SF Pro Display";
-  color: ${(props) => (props.color === "gray" ? "#ABABAB" : "black")};
+  font-weight: ${({ category }) => category === "All Tasks" && "700"};
+  color: ${({ color }) => (color === "gray" ? "#ABABAB" : "black")};
+  padding: 12px 16px;
 
   &:hover {
     color: red;
